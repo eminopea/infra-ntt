@@ -35,6 +35,18 @@ services:
     networks:
       - prod-net
 
+  nginx:
+    image: nginx:latest
+    container_name: nginx-prod
+    ports:
+      - "${GATEWAY_PORT}"
+    volumes:
+      - ./nginx:/etc/nginx  
+    depends_on:
+      - api-gateway
+    networks:
+      - prod-net
+
 volumes:
   mongo_prod:
 
