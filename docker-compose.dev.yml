@@ -41,7 +41,7 @@ services:
     ports:
       - "8090:80" 
     volumes:
-      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/default.conf:/etc/nginx/default.conf
     depends_on:
       - api-gateway
     networks:
