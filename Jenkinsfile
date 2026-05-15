@@ -5,18 +5,18 @@ pipeline {
         string(name: 'VERSION', defaultValue: 'latest', description: 'Versión a desplegar')
     }
 
-    stages {
+    stages { 
+        stage('Checkout Infra') {
+            steps {
+                git url: 'https://github.com/eminopea/infra-ntt.git', branch: "${env.BRANCH_NAME}"
+            }
+        }
+        
         stage('Build Nginx Image') {
             steps {
                 sh """
                 docker build -t nginx-custom ./nginx
                 """
-            }
-        }
-
-        stage('Checkout Infra') {
-            steps {
-                git url: 'https://github.com/eminopea/infra-ntt.git', branch: "${env.BRANCH_NAME}"
             }
         }
 
