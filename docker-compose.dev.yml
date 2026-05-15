@@ -34,18 +34,18 @@ services:
     image: eminope/ms-api-gateway:${VERSION}
     networks:
       - dev-net
-
+ 
   nginx:
-    image: nginx:latest
+    build:
+      context: ./nginx  
     container_name: nginx-dev
     ports:
-      - "8090:80" 
-    volumes:
-      - ./nginx:/etc/nginx/conf.d
+      - "8090:80"
     depends_on:
       - api-gateway
     networks:
       - dev-net
+
 
 volumes:
   mongo_dev:

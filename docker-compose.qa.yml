@@ -36,16 +36,15 @@ services:
       - qa-net
   
   nginx:
-    image: nginx:latest
-    container_name: nginx-qa
+    build:
+      context: ./nginx  
+    container_name: nginx-dev
     ports:
-      - "${GATEWAY_PORT}:80" 
-    volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - "8090:80"
     depends_on:
       - api-gateway
     networks:
-      - qa-net
+      - dev-net
 
 volumes:
   mongo_qa:
