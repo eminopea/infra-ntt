@@ -41,7 +41,7 @@ services:
     ports:
       - "8090:80" 
     volumes:
-    - /var/jenkins_home/workspace/ntt-infra_develop/nginx:/etc/nginx
+      - ./infra/nginx:/etc/nginx
     depends_on:
       - api-gateway
     networks:
