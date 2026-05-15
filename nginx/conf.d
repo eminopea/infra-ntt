@@ -1,11 +1,7 @@
 events {}
 
 http {
-
-    upstream backend {
-        server api-gateway:8090;
-    }
-
+ 
     server {
         listen 80;
 
@@ -13,7 +9,7 @@ http {
         gzip_types text/plain application/json;
 
         location / {
-            proxy_pass http://backend;
+            proxy_pass http://api-gateway:8080;
 
             proxy_http_version 1.1;
             proxy_set_header Connection "";
