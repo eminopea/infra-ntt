@@ -37,7 +37,7 @@ services:
  
   nginx:
     build:
-      context: ./nginx  
+      context: nginx-custom  
     container_name: nginx-dev
     ports:
       - "8090:80"

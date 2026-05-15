@@ -6,6 +6,13 @@ pipeline {
     }
 
     stages {
+        stage('Build Nginx Image') {
+            steps {
+                sh """
+                docker build -t nginx-custom ./nginx
+                """
+            }
+        }
 
         stage('Checkout Infra') {
             steps {
