@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+
+  mongo:
+    image: mongo:6
+    volumes:
+      - mongo_dev:/data/db
+    networks:
+      - dev-net
+
+  ms-auth:
+    image: eminope/ms-auth:${VERSION}
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongo:27017/authdb
+    networks:
+      - dev-net
+
+  demo:
+    image: eminope/demo:${VERSION}
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongo:27017/customerdb
+    networks:
+      - dev-net
+
+  ms-pedidos:
+    image: eminope/ms-pedidos:${VERSION}
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongo:27017/customerdb
+    networks:
+      - dev-net
+
+  api-gateway:
+    image: eminope/ms-api-gateway:${VERSION}
+    networks:
+      - dev-net
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx-dev
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - api-gateway
+    networks:
+      - dev-net
+
+volumes:
+  mongo_dev:
+
+networks:
+  dev-net:
