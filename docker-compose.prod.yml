@@ -39,9 +39,9 @@ services:
     image: nginx:latest
     container_name: nginx-prod
     ports:
-      - "80"
+      - "${GATEWAY_PORT}"
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx:/etc/nginx
     depends_on:
       - api-gateway
     networks:

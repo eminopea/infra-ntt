@@ -39,9 +39,9 @@ services:
     image: nginx:latest
     container_name: nginx-dev
     ports:
-      - "80:80"
+      - "${GATEWAY_PORT}:80"
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx:/etc/nginx
     depends_on:
       - api-gateway
     networks:
