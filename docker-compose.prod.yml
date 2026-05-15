@@ -41,7 +41,7 @@ services:
     ports:
       - "${GATEWAY_PORT}:80" 
     volumes:
-      - ./infra/nginx:/etc/ngin  
+      - ./nginx:/etc/ngin  
     depends_on:
       - api-gateway
     networks:

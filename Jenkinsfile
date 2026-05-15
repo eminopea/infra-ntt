@@ -9,17 +9,14 @@ pipeline {
 
         stage('Checkout Infra') {
             steps {
-                dir('infra') {
-                    git url: 'https://github.com/eminopea/infra-ntt.git', branch: "${env.BRANCH_NAME}"
-                }
+                git url: 'https://github.com/eminopea/infra-ntt.git', branch: "${env.BRANCH_NAME}"
             }
         }
 
         stage('Deploy DEV') {
             when { branch 'develop' }
             steps {
-                sh """
-                cd infra
+                sh """ 
                 VERSION=${params.VERSION} docker compose -f docker-compose.dev.yml --env-file .env.dev up -d
                 """
             }
@@ -28,8 +25,7 @@ pipeline {
         stage('Deploy QA') {
             when { branch 'qa' }
             steps {
-                sh """
-                cd infra
+                sh """ 
                 VERSION=${params.VERSION} docker compose -f docker-compose.qa.yml --env-file .env.qa up -d
                 """
             }
@@ -40,8 +36,7 @@ pipeline {
             steps {
                 input message: "¿Deploy a producción?"
 
-                sh """
-                cd infra
+                sh """ 
                 VERSION=${params.VERSION} docker compose -f docker-compose.prod.yml --env-file .env.prod up -d
                 """
             }
