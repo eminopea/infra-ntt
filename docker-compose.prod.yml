@@ -16,8 +16,8 @@ services:
     networks:
       - prod-net
 
-  ms-pedidos:
-    image: eminope/ms-pedidos:${VERSION}
+  ms-client:
+    image: eminope/ms-client:${VERSION}
     environment:
       - SPRING_DATA_MONGODB_URI=mongodb://mongo:27017/customerdb
     networks:
