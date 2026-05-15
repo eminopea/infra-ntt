@@ -35,18 +35,6 @@ services:
     networks:
       - qa-net
 
-  nginx:
-    image: nginx:latest
-    container_name: nginx-qa
-    ports:
-      - "${GATEWAY_PORT}:80"
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf 
-    depends_on:
-      - api-gateway
-    networks:
-      - qa-net
-
 volumes:
   mongo_qa:
 
