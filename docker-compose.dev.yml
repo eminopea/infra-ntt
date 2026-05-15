@@ -36,8 +36,7 @@ services:
       - dev-net
  
   nginx:
-    build:
-      context: nginx-custom  
+    image: nginx-custom  
     container_name: nginx-dev
     ports:
       - "8090:80"
